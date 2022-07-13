@@ -12,21 +12,20 @@ import web.service.CarsServiceimpl;
 public class CarsController {
     CarsServiceimpl serviceimpl = new CarsServiceimpl();
 
-
     @GetMapping("/cars")
-    public String showCars(@RequestParam(value = "index", required = false) String index,
+    public String showCars(@RequestParam(value = "index", required = false) Integer index,
                            ModelMap model) {
-//        if (Integer.parseInt(index) >= 5) {
-//            model.addAttribute("cars",serviceimpl.getCars(5));
-//        }else {
-//            model.addAttribute("cars", serviceimpl.getCars(Integer.parseInt(index)));
-//        }
-
-        try {
-            model.addAttribute("cars", serviceimpl.getCars(Integer.parseInt(index)));
-        } catch (NumberFormatException e) {
-            model.addAttribute("cars", serviceimpl.getCars(5));
+        if (index == null) {
+            model.addAttribute("cars",serviceimpl.getCars(5));
+        }else {
+            model.addAttribute("cars", serviceimpl.getCars(index));
         }
+
+//        try {
+//            model.addAttribute("cars", serviceimpl.getCars(index));
+//        } catch (NumberFormatException e) {
+//            model.addAttribute("cars", serviceimpl.getCars(5));
+//        }
 
 
         return "cars";
