@@ -16,8 +16,11 @@ import java.util.List;
 //@RequestMapping("/cars")
 public class CarsController {
 
-    CarsService service = new CarsServiceimpl();
-
+    CarsService service;
+    @Autowired
+    public CarsController(CarsService service) {
+        this.service = service;
+    }
 
     @GetMapping("/cars")
     public String showCars(@RequestParam(value = "index", required = false) Integer index,
