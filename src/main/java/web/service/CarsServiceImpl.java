@@ -10,16 +10,16 @@ import java.util.List;
 
 
 @Service
-public class CarsServiceimpl implements CarsService{
+public class CarsServiceImpl implements CarsService{
 
-    UserDao userDao;
+    private final UserDao userDao;
     @Autowired
-    public CarsServiceimpl(UserDao userDao) {
+    public CarsServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
     public List<Car> getCars(int index) {
-        return userDao.getCars(index);
+        return userDao.getCars().stream().limit(index).toList();
     }
 }

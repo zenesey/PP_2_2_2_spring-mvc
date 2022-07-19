@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UserDao {
 
-    List<Car> getCars(int index);
+    List<Car> getCars();
 }
